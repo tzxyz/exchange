@@ -1,4 +1,4 @@
-package org.zhuonima.exchange.orders.models;
+package org.zhuonima.exchange.accounts.models;
 
 import lombok.Data;
 import org.zhuonima.exchange.common.models.Currency;
@@ -10,16 +10,17 @@ import java.math.BigDecimal;
 @Entity
 @Table(
     name = "exchange_accounts",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"userId, currency"})
+    uniqueConstraints = @UniqueConstraint(columnNames = {"userId", "currency"})
 )
 public class Account {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private Long userId;
 
+    @Enumerated(EnumType.STRING)
     private Currency currency;
 
     private BigDecimal balance;

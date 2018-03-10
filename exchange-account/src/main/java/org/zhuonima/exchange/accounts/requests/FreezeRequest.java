@@ -3,11 +3,14 @@ package org.zhuonima.exchange.accounts.requests;
 import lombok.Data;
 import org.zhuonima.exchange.common.models.Currency;
 
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Data
-public class DepositRequest {
+public class FreezeRequest {
     private Long userId;
     private Currency currency;
-    private BigDecimal balance;
+
+    @Positive
+    private BigDecimal amount;
 }
