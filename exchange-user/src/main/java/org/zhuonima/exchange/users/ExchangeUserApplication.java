@@ -1,4 +1,4 @@
-package org.zhuonima.exchange.orders;
+package org.zhuonima.exchange.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

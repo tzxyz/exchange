@@ -2,23 +2,23 @@ package org.zhuonima.exchange.common.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Optional;
+import org.zhuonima.exchange.common.exceptions.ExchangeException;
 
 @Data
 @AllArgsConstructor
-public class ApiResult<T> {
+public class ApiResult {
     public boolean ok;
-    public Optional<String> error;
-    public Optional<T> data;
+    public ExchangeException error;
+    public Object data;
 
-    public static <T> ApiResult<T> success(T data) {
-        return new ApiResult<>(Boolean.TRUE, Optional.empty(), Optional.of(data));
+    public static ApiResult success(Object data) {
+        return new ApiResult(Boolean.TRUE, null, data);
     }
 
-    public static <T> ApiResult<T> failure(String error) {
-        return new ApiResult<>(Boolean.FALSE, Optional.of(error), Optional.empty());
+    public static ApiResult failure(ExchangeException e) {
+        return new ApiResult(Boolean.FALSE, e, null);
     }
+
 
 }
 
