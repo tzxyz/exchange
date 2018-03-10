@@ -1,8 +1,9 @@
-package org.zhuonima.exchange.orders.services;
+package org.zhuonima.exchange.users.services;
 
 import org.springframework.stereotype.Service;
-import org.zhuonima.exchange.orders.models.User;
-import org.zhuonima.exchange.orders.repositories.UserRepository;
+import org.zhuonima.exchange.users.exceptions.ExchangeUserException;
+import org.zhuonima.exchange.users.models.User;
+import org.zhuonima.exchange.users.repositories.UserRepository;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -14,11 +15,20 @@ public class UserService {
         this.userRepository = userReactiveRepository;
     }
 
-    public Mono<User> register(User user) {
+    public Mono<User> register(User user) throws ExchangeUserException {
+        checkEmail(user);
         return Mono.just(this.userRepository.save(user));
     }
 
-    public Mono<User> login(User user) {
+    public Mono<User> login(User user) throws ExchangeUserException {
         return Mono.just(this.userRepository.findFirstByEmail(user.getEmail()));
     }
+
+    private void checkEmail(User user) {
+        User u = userRepository.findFirstByEmail(user.getEmail());
+        if (u != null) {
+            throw new ExchangeUserException("该邮箱已经注册");
+        }
+    }
+
 }

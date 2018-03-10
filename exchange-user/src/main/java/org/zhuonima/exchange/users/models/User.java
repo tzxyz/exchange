@@ -1,4 +1,4 @@
-package org.zhuonima.exchange.orders.models;
+package org.zhuonima.exchange.users.models;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private String email;
