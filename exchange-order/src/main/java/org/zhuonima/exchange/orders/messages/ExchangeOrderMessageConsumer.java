@@ -1,33 +1,32 @@
 package org.zhuonima.exchange.orders.messages;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
 @Component
-@EnableBinding(Source.class)
-public class ExchangeOrderMessageProducer {
+@EnableBinding({Sink.class})
+public class ExchangeOrderMessageConsumer implements CommandLineRunner {
 
-    private final Source source;
+    private final RabbitTemplate rabbitTemplate;
 
-    public ExchangeOrderMessageProducer(Source source) {
-        this.source = source;
+    public ExchangeOrderMessageConsumer(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void send(String s) {
-        source.output().send(MessageBuilder.withPayload(s).build());
+    @StreamListener(Sink.INPUT)
+    public void onMessage(String message) {
+        System.out.println("@StreamListener : " + message);
     }
 
-    @PostConstruct
-    public void start() {
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
-            send("ssss");
-        }, 0, 1, TimeUnit.SECONDS);
+    @Override
+    public void run(String... args) throws Exception {
+//        Object message = rabbitTemplate.receiveAndConvert("666");
+//        System.out.println(message.toString());
+
+//        rabbitTemplate.send();
     }
 }
