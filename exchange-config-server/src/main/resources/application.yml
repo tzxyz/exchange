@@ -1,0 +1,19 @@
+server:
+  port: 10000
+spring:
+  application:
+    name: exchange-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///Users/zhuotianzhu/Java/exchange/
+          search-paths: /exchange-config-repositories
+eureka:
+  instance:
+    appname: ${spring.application.name}
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
