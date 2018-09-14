@@ -1,4 +1,4 @@
-package org.zhuonima.exchange.orders.models;
+package org.zhuonima.exchange.accounts.models;
 
 import lombok.Data;
 

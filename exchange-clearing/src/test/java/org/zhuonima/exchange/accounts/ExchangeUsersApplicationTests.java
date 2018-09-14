@@ -1,4 +1,4 @@
-package org.zhuonima.exchange.orders;
+package org.zhuonima.exchange.accounts;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
