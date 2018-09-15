@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: exchange-config-server
+      name: exchange-user
