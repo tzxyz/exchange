@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: exchange-user
   datasource:
     url: jdbc:mysql://localhost:3306/exchange-users?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
@@ -15,6 +17,3 @@ eureka:
   instance:
     appname: ${spring.application.name}
 
-spring:
-  application:
-    name: exchange-user
