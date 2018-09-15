@@ -1,5 +1,6 @@
 package org.zhuonima.exchange.users.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zhuonima.exchange.users.exceptions.ExchangeUserException;
 import org.zhuonima.exchange.users.models.User;
@@ -11,8 +12,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userReactiveRepository) {
-        this.userRepository = userReactiveRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public Mono<User> register(User user) throws ExchangeUserException {

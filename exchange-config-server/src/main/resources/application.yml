@@ -9,6 +9,7 @@ spring:
         git:
           uri: file:///Users/zhuotianzhu/Java/exchange/
           search-paths: /exchange-config-repositories
+
 eureka:
   instance:
     appname: ${spring.application.name}
